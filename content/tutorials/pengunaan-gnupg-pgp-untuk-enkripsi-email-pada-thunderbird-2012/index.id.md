@@ -23,8 +23,6 @@ authors:
   - ditatompel
 ---
 
-Pada artikel sebelumnya [Tentang Email dan Privasi]({{< ref "/blog/note-about-email-and-privacy/index.id.md" >}} "Tentang Email dan Privasi") kita telah membahas mengenai bagaimana sistem email bekerja, bagaimana pesan email dibajak, menganalisa header email, dan sedikit gambaran bagaimana melindungi privasi email kita. Pada kesempatan kali ini kita ingin sedikit berbagi bagaimana menggunakan GnuPG untuk mengenkripsi isi pesan email kita.
-
 Ketika kita berbagi informasi melalui email dengan teman maupun rekan kerja, tidak jarang kita menyertakan data-data seperti email, username, password atau informasi sensitif lainnya. Untuk melingdungi isi email yang sifatnya rahasia tersebut, maka kita dapat mengunakan fitur **PGP**. **PGP** digunakan untuk mengenkripsi body / isi pesan email.
 
 Dengan menggunakan metode ini maka proses pertukaran informasi membutuhkan persetujuan sebelumnya antara pihak pengirim dan pihak penerima dengan melakukan pertukaran **"public key"** sehingga isi pesan jauh lebih terjamin kerahasiaannya.

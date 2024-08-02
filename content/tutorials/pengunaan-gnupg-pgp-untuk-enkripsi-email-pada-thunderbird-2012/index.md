@@ -23,8 +23,6 @@ authors:
   - ditatompel
 ---
 
-In a previous article [About Email and Privacy]({{< ref "/blog/note-about-email-and-privacy/index.md" >}} "About Email and Privacy"), we discussed how email systems work, how emails are intercepted, analyzed header data, and briefly outlined ways to protect our email privacy. On this occasion, we wish to share with you how to use GnuPG for encrypting the content of an email.
-
 When sharing information via email with friends or colleagues, it is not uncommon to include sensitive data such as email addresses, usernames, passwords,
 or other confidential information. To safeguard this sensitive content, we can utilize **GnuPG**. **GnuPG** is employed to encrypt the body or message of
 an email.

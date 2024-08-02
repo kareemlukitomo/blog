@@ -1,5 +1,5 @@
 ---
-title: ditatompel Insights
+title: Kareem's Blog
 # menu:
 #   main:
 #     name: Home

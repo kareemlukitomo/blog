@@ -26,7 +26,7 @@ images:
 #         color: '#e24d0e'
 authors:
 
-  - vie
+  - kareemlukitomo
 ---
 
 Di akhir bulan Agustus 2022, seseorang dengan inisial **Bjorka** di forum *breached* menjual **1,3 miliar data registrasi SIM card**. File berukuran 87GB yang dijual tersebut berisi informasi NIK, nomor telepon, Operator Seluler sampai tanggal registrasi *SIM card*.

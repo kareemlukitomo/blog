@@ -1,8 +1,9 @@
 en:
   languageName: English
-  weight: 1
+  title: Kareem's Blog
+  weight: 2
 
 id:
   languageName: Indonesia
-  title: ditatompel Insights
-  weight: 2
+  title: Kareem's Blog
+  weight: 1

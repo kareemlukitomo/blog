@@ -25,6 +25,7 @@ images:
 #         name: book
 #         color: '#e24d0e'
 authors:
+
   - vie
 ---
 

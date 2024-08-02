@@ -24,18 +24,18 @@ hb:
         - blog
         - tutorials
     giscus:
-      repo: ditatompel/insights
-      repo_id: R_kgDOJnjREg
+      repo: kareemlukitomo/blog
+      repo_id: R_kgDOMea3Yw
       category_id: DIC_kwDOJnjREs4CXRWP
   docs:
     giscus:
-      repo: ditatompel/insights
-      repo_id: R_kgDOJnjREg
+      repo: kareemlukitomo/blog
+      repo_id: R_kgDOMea3Yw
       category_id: DIC_kwDOJnjREs4CXRWP
   content_panel:
     repo:
       service: github # github or gitlab.
-      repo: ditatompel/insights
+      repo: kareemlukitomo/blog
       branch: main
       # subpath: exampleSite
   # gallery:

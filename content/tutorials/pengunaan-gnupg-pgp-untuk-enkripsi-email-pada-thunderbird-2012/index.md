@@ -6,7 +6,7 @@ summary: "To safeguard sensitive email content, we can utilize GnuPG/PGP. GnuPG/
 # linkTitle:
 date: 2012-07-29T19:47:55+07:00
 lastmod:
-draft: false
+draft: true
 noindex: false
 # comments: false
 nav_weight: 1000

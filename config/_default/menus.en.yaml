@@ -3,55 +3,18 @@ main:
     identifier: mainsite
     weight: 100
     params:
-      header: Main site www.ditatompel.com.
+      header: Main site kareem.one
       icon:
         vendor: font-awesome-solid
         name: globe
 
-  - name: www.ditatompel.com
+  - name: kareem.one
     parent: mainsite
-    url: https://www.ditatompel.com
+    url: https://kareem.one
     weight: 1
     params:
       icon:
         vendor: fas
         name: globe
         className: text-primary
-      description: Main site of ditatompel.com.
-
-  - identifier: mainsite-divider
-    parent: mainsite
-    weight: 10
-    params:
-      divider: true
-
-  - name: Tools
-    parent: mainsite
-    url: https://www.ditatompel.com/tools
-    weight: 11
-    params:
-      icon:
-        vendor: fas
-        name: wrench
-      description: Collection of free online tools.
-
-  - name: Free Proxy
-    parent: mainsite
-    url: https://www.ditatompel.com/proxy
-    weight: 12
-    params:
-      icon:
-        vendor: font-awesome-solid
-        name: network-wired
-        color: green
-      description: Free HTTP, HTTPS, SOCKS5 proxy list.
-  - name: Monero
-    parent: mainsite
-    url: https://www.ditatompel.com/monero
-    weight: 13
-    params:
-      icon:
-        vendor: fab
-        name: monero
-        color: orange
-      description: Monero remote nodes.
+      description: Main site of kareem.one.

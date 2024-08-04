@@ -6,7 +6,7 @@ summary: "Untuk melingdungi isi email yang sifatnya rahasia tersebut, maka kita 
 # linkTitle:
 date: 2012-07-29T19:47:55+07:00
 lastmod:
-draft: false
+draft: true
 noindex: false
 # comments: false
 nav_weight: 1000

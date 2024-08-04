@@ -1,4 +1,4 @@
-description: Try to understand and identify unmet needs to explain why something is happening the way it is.
+description: The map is not the territory" —Alfred Korzybski
 
 hb:
   # js_bundle_name: main # the JS bundle name.
@@ -8,11 +8,11 @@ hb:
     # logo_bg: '#712cf9' # logo background color, used by logo with transparent background.
     # see https://hbstack.dev/en/docs/modules/socials/.
     socials:
-      github: https://github.com/ditatompel/insights
+      github: https://github.com/kareemlukitomo/blog
   footer:
     # see https://hbstack.dev/en/docs/modules/socials/.
     socials:
-      github: https://github.com/ditatompel/insights
+      github: https://github.com/kareemlukitomo/blog
   blog:
     paginate: 12 # paginate.
     # post_thumbnail: false # whether to show the thumbnails.

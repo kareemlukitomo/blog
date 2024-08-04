@@ -1,6 +1,6 @@
 ---
 title: "Digital Garden Saya"
-description: "Welcome to my digital garden"
+description: "Selamat datang di Digital Garden saya!"
 date: 2024-08-05T01:19:52.508+07:00
 lastmod:
 draft: false
@@ -31,7 +31,8 @@ authors:
   - kareemlukitomo
 ---
 
-## Selamat datang di digital garden saya!
+![Photo By Giulia Squillace](https://plus.unsplash.com/premium_photo-1673141390230-8b4a3c3152b1?q=80&w=1373&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
+[Photo By Giulia Squillace](https://unsplash.com/photos/a-garden-with-a-stone-walkway-surrounded-by-greenery-ApkZ5RTza5g)
 
 Saya akan mulai menulis artikel-artikel terkait dengan keseharian saya di website ini. Konsep "Digital Garden" ini sangat menarik bagi saya. 
 

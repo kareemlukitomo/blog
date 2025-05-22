@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ["ubuntu-latest:docker://gitea/runner-images:ubuntu-latest"]
+    runs-on: ["docker"]
     steps:
       - uses: actions/checkout@v3
 

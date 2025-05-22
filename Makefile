@@ -1,5 +1,5 @@
 ENV ?= git.kareem.one/kareem/blog
-TAG := $(shell date +%Y%m%d%H%M)
+TAG ?= $(shell date +%Y%m%d%H%M)
 
 .PHONY: docker push
 

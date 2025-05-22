@@ -17,8 +17,9 @@
   "homepage": "https://github.com/hbstack/theme#readme",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
-    "autoprefixer": "^10.4.14",
-    "postcss-cli": "^11.0.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.1",
     "rtlcss": "^4.0.0"
   }
 }

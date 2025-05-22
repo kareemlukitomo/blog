@@ -1,7 +1,7 @@
-baseURL: https://kareem.lukitomo.com/
+baseURL: https://blog.kareem.one/
 title: Kareem's Blog
 # Copyright, the {year} is the placeholder of this year.
-copyright: "Copyright © 2024-{year} [kareem.lukitomo.com](https://kareem.lukitomo.com/). All Rights Reserved."
+copyright: "Copyright © 2024-{year} [blog.kareem.one](https://blog.kareem.one/). All Rights Reserved."
 defaultContentLanguage: id
 defaultContentLanguageInSubdir: true # disable this to remove the default language code from URL, i.e. /en/docs -> /docs.
 enableRobotsTXT: true

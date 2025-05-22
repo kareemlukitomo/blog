@@ -2,9 +2,12 @@
 .gitlab
 .gitea
 .forgejo
+Dockerfile
+docker-compose.yml
+.gitignore
+
 .hugo_build.lock
 hugo_stats.json
-package-json.lock
 ltex.*.txt
 public/
 node_modules/

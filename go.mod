@@ -1,4 +1,4 @@
-module github.com/ditatompel/insights
+module git.kareem.one/kareem/blog
 
 go 1.21.3
 

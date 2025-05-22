@@ -9,3 +9,8 @@ build:
 
 docker:
 	docker build -t $(ENV):$(TAG) .
+
+push:
+	docker push $(ENV):$(TAG)
+	docker tag $(ENV):$(TAG) $(ENV):latest
+	docker push $(ENV):latest

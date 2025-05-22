@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ["docker"]
+    runs-on: ["vm"]
     steps:
       - uses: actions/checkout@v3
 
@@ -17,4 +17,4 @@ jobs:
         run: make docker
 
       - name: Push Docker image
-        run: make docker-push
+        run: make push

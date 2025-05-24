@@ -9,7 +9,7 @@ timeout: 120s # images processing takes a long time, it's recommended to commit 
 enableEmoji: true
 
 permalinks:
-  blog: /blog/:year/:month/:title
+  blog: /:year/:month/:title
 
 outputs:
   home:

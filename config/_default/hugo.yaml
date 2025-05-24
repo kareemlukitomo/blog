@@ -2,7 +2,7 @@ baseURL: https://blog.kareem.one/
 title: Kareem's Blog
 # Copyright, the {year} is the placeholder of this year.
 copyright: "Copyright © 2024-{year} [blog.kareem.one](https://blog.kareem.one/). All Rights Reserved."
-defaultContentLanguage: id
+defaultContentLanguage: en
 defaultContentLanguageInSubdir: true # disable this to remove the default language code from URL, i.e. /en/docs -> /docs.
 enableRobotsTXT: true
 timeout: 120s # images processing takes a long time, it's recommended to commit the resources folder for improve the build performance.

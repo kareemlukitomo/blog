@@ -1,6 +1,6 @@
 ---
-title: "Secure Atuin with ZFS Encrypted Zvol"
-description: "Relocate Atuin’s history DB to an encrypted ZFS volume for performance and encryption."
+title: "Amankan Atuin dengan ZFS Encrypted Zvol"
+description: "Pindahkan database riwayat Atuin ke volume ZFS terenkripsi untuk performa dan enkripsi lebih baik."
 date: 2025-05-24T17:00:00+07:00
 lastmod: 2025-05-24T17:00:00+07:00
 draft: false
@@ -21,13 +21,13 @@ authors:
   - kareemlukitomo
 ---
 
-This guide documents how to relocate [Atuin](https://atuin.sh)’s shell history database to a ZFS-encrypted volume (`zvol`) for better performance and encryption. It enables automatic unlock and mount on boot. Tested on Debian with ZFS root (`rpool`), suitable for reproducible homelab setups. This setup helps me alleviate the [performance issue when using atuin with ZFS filesystem](https://github.com/atuinsh/atuin/issues/952) 
+Panduan ini mendokumentasikan cara memindahkan database riwayat shell [Atuin](https://atuin.sh) ke volume ZFS terenkripsi (`zvol`) demi performa dan enkripsi yang lebih baik. Proses ini memungkinkan unlock dan mount otomatis saat boot. Diuji pada Debian dengan root ZFS (`rpool`), cocok untuk setup homelab yang _reproducible_. Setup ini membantu saya mengatasi [masalah performa saat menggunakan atuin dengan filesystem ZFS](https://github.com/atuinsh/atuin/issues/952).
 
 ---
 
-## 1. Destroy previous Atuin and zvol state (start clean)
+## 1. Hapus Atuin dan zvol sebelumnya (mulai dari awal)
 
-Before removing atuin, we can also optionally do `atuin store push`to make sure the local history is pushed/synced to the remote server
+Sebelum menghapus atuin, kita juga bisa melakukan `atuin store push` secara opsional untuk memastikan riwayat lokal sudah dikirim/disinkronkan ke server remote.
 
 ```bash
 pkill atuin
@@ -39,7 +39,7 @@ sudo zfs destroy rpool/data/atuin 2>/dev/null || true
 
 ---
 
-## 2. Generate persistent encryption key
+## 2. Buat kunci enkripsi persisten
 
 ```bash
 sudo mkdir -p /etc/zfs/keys
@@ -49,7 +49,7 @@ sudo chmod 600 /etc/zfs/keys/atuin.key
 
 ---
 
-## 3. Create encrypted zvol
+## 3. Buat zvol terenkripsi
 
 ```bash
 sudo zfs create -V 1G \
@@ -61,7 +61,7 @@ sudo zfs create -V 1G \
 
 ---
 
-## 4. Format and mount zvol manually
+## 4. Format dan mount zvol secara manual
 
 ```bash
 sudo mkfs.ext4 /dev/zvol/rpool/data/atuin
@@ -70,12 +70,12 @@ sudo mount /dev/zvol/rpool/data/atuin ~/.local/share/atuin
 
 ---
 
-## 5. Create systemd key loader service
+## 5. Buat service systemd untuk memuat kunci
 
 ```ini
 # /etc/systemd/system/zfs-load-key@rpool-data-atuin.service
 [Unit]
-Description=Load key for ZFS dataset %I
+Description=Load key untuk ZFS dataset %I
 DefaultDependencies=no
 Before=home-kareem-.local-share-atuin.mount
 
@@ -87,7 +87,7 @@ ExecStart=/usr/sbin/zfs load-key %I
 WantedBy=home-kareem-.local-share-atuin.mount
 ```
 
-Enable the service:
+Aktifkan service:
 
 ```bash
 sudo systemctl enable zfs-load-key@rpool-data-atuin.service
@@ -95,12 +95,12 @@ sudo systemctl enable zfs-load-key@rpool-data-atuin.service
 
 ---
 
-## 6. Create systemd mount unit
+## 6. Buat unit mount systemd
 
 ```ini
 # /etc/systemd/system/home-kareem-.local-share-atuin.mount
 [Unit]
-Description=Encrypted Atuin ZVOL mount
+Description=Mount Atuin ZVOL terenkripsi
 After=zfs-load-key@rpool-data-atuin.service
 Requires=zfs-load-key@rpool-data-atuin.service
 
@@ -114,7 +114,7 @@ Options=defaults
 WantedBy=multi-user.target
 ```
 
-Enable the mount:
+Aktifkan mount:
 
 ```bash
 sudo systemctl enable home-kareem-.local-share-atuin.mount
@@ -122,15 +122,15 @@ sudo systemctl enable home-kareem-.local-share-atuin.mount
 
 ---
 
-## 7. **Reboot before using Atuin**
+## 7. **Reboot sebelum menggunakan Atuin**
 
-**Important**: Reboot now to ensure the zvol is unlocked and mounted by systemd.
+**Penting**: Lakukan reboot sekarang untuk memastikan zvol sudah di-unlock dan di-mount oleh systemd.
 
-This ensures your `atuin login` config and DB are stored in the encrypted mount.
+Ini memastikan konfigurasi `atuin login` dan DB tersimpan di mount terenkripsi.
 
 ---
 
-## 8. Login and import history
+## 8. Login dan impor riwayat
 
 ```bash
 atuin login
@@ -141,6 +141,6 @@ atuin stats
 
 ---
 
-## ✅ Done!
+## ✅ Selesai!
 
-Your shell history is now encrypted at rest using ZFS native encryption and mounted automatically on boot.
+Riwayat shell Anda sekarang terenkripsi saat tidak digunakan menggunakan enkripsi native ZFS dan otomatis di-mount saat boot.

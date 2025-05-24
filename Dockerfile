@@ -32,7 +32,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # Install hugo deps
-COPY config/ config/
+COPY config/**/module.yaml config/
 RUN hugo mod graph
 
 # Install node deps

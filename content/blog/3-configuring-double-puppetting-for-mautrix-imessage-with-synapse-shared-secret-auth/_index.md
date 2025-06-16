@@ -1,5 +1,4 @@
 ---
-
 title: "Enable mautrix-imessage Double-Puppeting with Synapse Shared Secret Auth"
 description: "A guide to configure double-puppeting for mautrix-imessage on modern Synapse versions using the Shared Secret Authenticator module for legacy compatibility."
 date: 2025-06-16T08:00:00+07:00

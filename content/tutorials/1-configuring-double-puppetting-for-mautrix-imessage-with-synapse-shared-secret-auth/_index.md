@@ -10,7 +10,6 @@ featured: true
 pinned: false
 comments: true
 categories:
-  - devops
   - homelab
   - matrix
 tags:
@@ -20,6 +19,7 @@ tags:
   - imessage
   - bridge
   - kubernetes
+  - docker
 authors:
   - kareemlukitomo
 ---
@@ -99,13 +99,13 @@ INF Successfully automatically enabled custom puppet module=User/@kareem:lukitom
 ```
 ## For Kubernetes
 
-### Step 2: Download the Auth Module
+### Step 1: Download the Auth Module
 
 ```bash
 curl -O https://raw.githubusercontent.com/devture/matrix-synapse-shared-secret-auth/master/shared_secret_authenticator.py
 ```
 
-### Step 3: Create a ConfigMap for the Module
+### Step 2: Create a ConfigMap for the Module
 
 ```bash
 kubectl create configmap synapse-module-shared-secret \
@@ -113,7 +113,7 @@ kubectl create configmap synapse-module-shared-secret \
   -n matrix
 ```
 
-### Step 4: Update Synapse Configuration
+### Step 3: Update Synapse Configuration
 
 Edit your `homeserver.yaml`:
 
@@ -125,7 +125,7 @@ modules:
       m_login_password_support_enabled: true
 ```
 
-### Step 5: Mount the Module into Synapse Pod
+### Step 4: Mount the Module into Synapse Pod
 
 Add the volume:
 
@@ -147,14 +147,14 @@ volumeMounts:
 
 > 🔁 Adjust the Python version path as needed.
 
-### Step 6: Restart Deployments
+### Step 5: Restart Deployments
 
 ```bash
 kubectl rollout restart deployment/synapse -n matrix
 kubectl rollout restart deployment/mautrix-imessage -n matrix
 ```
 
-### Step 7: Confirm Success
+### Step 6: Confirm Success
 
 ```text
 INF Successfully automatically enabled custom puppet module=User/@kareem:lukitomo.com

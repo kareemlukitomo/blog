@@ -24,12 +24,25 @@ authors:
   - kareemlukitomo
 ---
 
-This guide explains how to configure double-puppeting for `mautrix-imessage` using the `login_shared_secret` method in Synapse. This approach allows the bridge to authenticate as users in a way compatible with modern Synapse installations.
+This guide explains how to configure double-puppeting for `mautrix-imessage` using the `login_shared_secret` method in Synapse. This approach allows the bridge to authenticate as users in a way compatible with modern Synapse installations. https://github.com/devture/matrix-synapse-shared-secret-auth
 
 Tested with:
 
-* mautrix-imessage v0.1.0+dev.c3534649
+* [mautrix-imessage](https://mau.dev/mautrix/imessage) v0.1.0+dev.c3534649
 * Synapse v1.131.0
+
+## Pre-requisites
+
+Configure a pre-defined `login_shared_secret` value in the config file of `mautrix-imessage` bridge
+
+```yaml
+    # If set, double puppeting will be enabled automatically instead of the user
+    # having to find an access token and run `login-matrix` manually.
+    login_shared_secret: "a_very_secret_and_long_password_here"
+```
+
+> 🔒 This secret will also be used in your Synapse configuration. Make sure they match.
+
 
 ## For Docker Compose
 
@@ -85,17 +98,6 @@ Check Synapse and bridge logs for double-puppeting confirmation:
 INF Successfully automatically enabled custom puppet module=User/@kareem:lukitomo.com
 ```
 ## For Kubernetes
-
-### Step 1: Configure Shared Secret in mautrix-imessage
-
-Update your bridge's `config.yaml` to include the `login_shared_secret`:
-
-```yaml
-bridge:
-  login_shared_secret: "a_very_secret_and_long_password_here"
-```
-
-> 🔒 This secret will also be used in your Synapse configuration. Make sure they match.
 
 ### Step 2: Download the Auth Module
 

@@ -13,8 +13,22 @@ jobs:
     container:
       image: git.kareem.one/shaquille/node-docker:20-alpine-ca
     steps:
+      - name: Verify Forgejo token availability
+        run: |
+          if [ -n "${{ github.token }}" ]; then
+            echo "github.token is available"
+          else
+            echo "::error::github.token is empty"
+            exit 1
+          fi
+
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.ref }}
+          token: ${{ github.token }}
+          github-server-url: ${{ github.server_url }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

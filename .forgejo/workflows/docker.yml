@@ -11,6 +11,21 @@ jobs:
   build:
     runs-on: ["blog-ci"]
     steps:
+      - name: Guardrail - trusted actor
+        env:
+          TRUSTED_ACTORS: "kareemlukitomo shaquille"
+        run: |
+          actor="${{ github.actor }}"
+          for trusted_actor in ${TRUSTED_ACTORS}; do
+            if [ "${actor}" = "${trusted_actor}" ]; then
+              exit 0
+            fi
+          done
+
+          echo "::error::Untrusted actor '${actor}'. Expected one of: ${TRUSTED_ACTORS}."
+          echo "::error::Stopping workflow to avoid unauthorized image push."
+          exit 1
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -32,6 +47,13 @@ jobs:
 
       - name: Build Docker image
         run: make docker
+
+      - name: Login to Forgejo registry
+        env:
+          REGISTRY_USER: shaquille
+          REGISTRY_PASSWORD: ${{ secrets.FORGEJO_REGISTRY_TOKEN }}
+        run: |
+          echo "$REGISTRY_PASSWORD" | docker login git.kareem.one -u "$REGISTRY_USER" --password-stdin
 
       - name: Push base Docker image
         run: make push-base

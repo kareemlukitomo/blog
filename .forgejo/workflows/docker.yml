@@ -12,17 +12,31 @@ jobs:
     runs-on: ["blog-ci"]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-          ref: ${{ github.ref }}
-          token: ${{ github.token }}
-          github-server-url: ${{ github.server_url }}
+        env:
+          GIT_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          SERVER_URL: ${{ github.server_url }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          set -eu
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+          if [ -z "$GIT_TOKEN" ]; then
+            echo "::error::github.token is empty"
+            exit 1
+          fi
+
+          mkdir -p "$GITHUB_WORKSPACE"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          find "$GITHUB_WORKSPACE" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+
+          cd "$GITHUB_WORKSPACE"
+          git init .
+          git remote add origin "${SERVER_URL}/${REPOSITORY}"
+
+          auth_header="$(printf 'x-access-token:%s' "$GIT_TOKEN" | base64 | tr -d '\n')"
+          git config --local "http.${SERVER_URL}/.extraheader" "AUTHORIZATION: basic ${auth_header}"
+          git fetch --no-tags --prune --depth=1 origin "$COMMIT_SHA"
+          git checkout --force FETCH_HEAD
 
       - name: Set TAG env
         id: set_tag

@@ -3,8 +3,12 @@ FROM git.kareem.one/shaquille/blog:base AS builder
 
 WORKDIR /app
 
-# Copy the rest of the site (excluding files already copied in base)
-COPY . .
+# Copy only the site sources needed for the production build.
+COPY go.mod go.sum package.json package-lock.json theme.toml ./
+COPY config/ config/
+COPY assets/ assets/
+COPY content/ content/
+COPY layouts/ layouts/
 
 # Build the site
 RUN hugo --minify --gc --cleanDestinationDir

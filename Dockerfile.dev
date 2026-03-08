@@ -45,5 +45,9 @@ RUN hugo mod graph
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Copy the rest of the site
-COPY . .
+# Copy only the site sources needed to run the dev server.
+COPY go.mod go.sum package.json package-lock.json theme.toml ./
+COPY config/ config/
+COPY assets/ assets/
+COPY content/ content/
+COPY layouts/ layouts/

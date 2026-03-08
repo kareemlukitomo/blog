@@ -1,4 +1,4 @@
-ENV ?= git.kareem.one/kareem/blog
+ENV ?= git.kareem.one/shaquille/blog
 TAG ?= $(shell date +%Y%m%d%H%M)
 
 .PHONY: docker push docker-base push-base

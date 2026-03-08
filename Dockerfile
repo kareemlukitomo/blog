@@ -1,5 +1,5 @@
 # Stage 1: Hugo build
-FROM git.kareem.one/kareem/blog:base AS builder
+FROM git.kareem.one/shaquille/blog:base AS builder
 
 WORKDIR /app
 

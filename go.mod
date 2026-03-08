@@ -1,4 +1,4 @@
-module git.kareem.one/kareem/blog
+module git.kareem.one/shaquille/blog
 
 go 1.21.3
 

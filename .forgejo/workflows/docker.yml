@@ -9,19 +9,8 @@ permissions:
 
 jobs:
   build:
-    runs-on: ["oracle"]
-    container:
-      image: git.kareem.one/shaquille/node-docker:20-alpine-ca
+    runs-on: ["blog-ci"]
     steps:
-      - name: Verify Forgejo token availability
-        run: |
-          if [ -n "${{ github.token }}" ]; then
-            echo "github.token is available"
-          else
-            echo "::error::github.token is empty"
-            exit 1
-          fi
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:

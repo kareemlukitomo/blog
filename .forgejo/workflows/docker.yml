@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ["oracle"]
     container:
-      image: git.kareem.one/shaquille/node-docker:20-alpine
+      image: git.kareem.one/shaquille/node-docker:20-alpine-ca
     steps:
       - uses: actions/checkout@v3
 

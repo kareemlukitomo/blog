@@ -7,7 +7,6 @@ services:
     deploy:
       labels:
         - traefik.enable=true
-        - traefik.docker.network=dokploy-network
         - traefik.http.routers.selfhosted-blog-dtrbrj-web.rule=Host(`blog.kareem.one`)
         - traefik.http.routers.selfhosted-blog-dtrbrj-web.entrypoints=web,websecure
         - traefik.http.routers.selfhosted-blog-dtrbrj-web.service=selfhosted-blog-dtrbrj-web

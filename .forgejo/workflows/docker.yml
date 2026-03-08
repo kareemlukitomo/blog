@@ -10,6 +10,8 @@ permissions:
 jobs:
   build:
     runs-on: ["oracle"]
+    container:
+      image: git.kareem.one/shaquille/node-docker:20-alpine
     steps:
       - uses: actions/checkout@v3
 

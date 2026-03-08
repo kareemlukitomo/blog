@@ -60,15 +60,3 @@ jobs:
 
       - name: Push Docker image
         run: make push
-
-      - name: Trigger Dokploy Deployment
-        env:
-          DOKPLOY_URL: ${{ secrets.DOKPLOY_URL }}
-          DOKPLOY_API_KEY: ${{ secrets.DOKPLOY_API_KEY }}
-        run: |
-          curl --fail --show-error \
-            -X POST "${DOKPLOY_URL%/}/api/application.deploy" \
-            -H "accept: application/json" \
-            -H "x-api-key: $DOKPLOY_API_KEY" \
-            -H "Content-Type: application/json" \
-            -d '{"applicationId":"selfhosted-blog-dtrbrj"}'

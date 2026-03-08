@@ -4,26 +4,29 @@ FROM node:slim AS builder
 ENV HUGO_VERSION=0.138.0
 ENV HUGO_CACHEDIR=/tmp/hugo_cache
 ENV GO_VERSION=1.21.3
+ENV DART_SASS_VERSION=1.89.0
 
-RUN apt update && apt install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
     curl \
-    git
+    git \
+ && rm -rf /var/lib/apt/lists/*
 
-# Install go from downloading binary
-RUN curl -L -o /tmp/go.tar.gz https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
-    tar -xzf /tmp/go.tar.gz -C /usr/local && \
-    rm /tmp/go.tar.gz && \
-    ln -s /usr/local/go/bin/go /usr/bin/go
-
-# Install Hugo
-RUN curl -L -o /tmp/hugo.tar.gz https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz && \
-    tar -xzf /tmp/hugo.tar.gz -C /usr/local/bin hugo && \
-    chmod +x /usr/local/bin/hugo
-
-# Install dart-sass and move the entire ./dart-sass/* into /usr/local/bin
-RUN curl -L -o /tmp/dart-sass.tar.gz https://github.com/sass/dart-sass/releases/download/1.89.0/dart-sass-1.89.0-linux-x64.tar.gz && \
-    tar -xzf /tmp/dart-sass.tar.gz -C /usr/local/bin --strip-components=1 && \
-    rm /tmp/dart-sass.tar.gz
+RUN set -eux; \
+    arch="$(dpkg --print-architecture)"; \
+    case "$arch" in \
+        amd64) go_arch='amd64'; hugo_arch='amd64' ;; \
+        arm64) go_arch='arm64'; hugo_arch='arm64' ;; \
+        *) echo "Unsupported architecture: $arch" >&2; exit 1 ;; \
+    esac; \
+    curl -L -o /tmp/go.tar.gz "https://dl.google.com/go/go${GO_VERSION}.linux-${go_arch}.tar.gz"; \
+    tar -xzf /tmp/go.tar.gz -C /usr/local; \
+    rm /tmp/go.tar.gz; \
+    ln -sf /usr/local/go/bin/go /usr/bin/go; \
+    curl -L -o /tmp/hugo.tar.gz "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${hugo_arch}.tar.gz"; \
+    tar -xzf /tmp/hugo.tar.gz -C /usr/local/bin hugo; \
+    chmod +x /usr/local/bin/hugo; \
+    rm /tmp/hugo.tar.gz
 
 WORKDIR /app
 
@@ -37,4 +40,4 @@ RUN hugo mod graph
 
 # Install node deps
 COPY package.json package-lock.json ./
-RUN npm install -d
+RUN npm ci && npm install -g sass@${DART_SASS_VERSION}
